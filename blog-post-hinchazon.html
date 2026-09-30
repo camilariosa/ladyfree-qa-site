@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LadyFree — Periodo e hinchazón</title>
+</head>
+<body>
+<style>
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadRoman.ttf') format('truetype');
+    font-weight:400;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadProBold.ttf') format('truetype');
+    font-weight:700;
+    font-style:normal;
+  }
+  :root{
+    --cream:#FBF3EE;
+    --cream-2:#F6E9E1;
+    --ink:#2B2320;
+    --ink-soft:#5A4F4A;
+    --fucsia:#D75F95;
+    --amarillo:#F6DB68;
+    --turquesa:#4BA2B0;
+    --verde:#ACC96F;
+    --azul:#4B4993;
+    --naranja:#E0833B;
+    --line:#E5D8CE;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:400;
+    color:var(--ink);
+    background:var(--cream);
+  }
+  h1,h2,h3,.serif{
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px;}
+  @media (max-width:760px){.wrap{padding:0 20px;}}
+
+  /* ===== NAV ===== */
+  header.site{
+    position:sticky;top:0;z-index:150;
+    background:rgba(251,243,238,0.94);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:118px;}
+  .logo-mark{height:104px;width:auto;display:block;cursor:pointer;}
+  .navlinks{display:flex;gap:30px;font-size:18px;letter-spacing:0.02em;}
+  .navlinks a{padding:6px 0;border-bottom:1px solid transparent;cursor:pointer;white-space:nowrap;}
+  .navlinks a.active,.navlinks a:hover{border-bottom:1px solid var(--fucsia);color:var(--fucsia);}
+  .nav-cta{
+    border:1px solid var(--ink);border-radius:30px;padding:9px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;
+  }
+  .nav-cta:hover{background:var(--ink);color:#fff;}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:6px;width:38px;height:38px;border:none;background:transparent;cursor:pointer;padding:0;flex:0 0 auto;}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;}
+  .mobile-menu{display:none;flex-direction:column;background:var(--cream);border-top:1px solid var(--line);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:18px 20px;border-bottom:1px solid var(--line);font-size:17px;}
+  .mobile-menu a.active{color:var(--fucsia);font-weight:700;}
+  .nav-cta-mobile{
+    border:1px solid var(--ink);border-radius:30px;padding:12px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;margin:20px;text-align:center;display:block;
+  }
+  .btn-solid{
+    display:inline-block;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:30px;
+    padding:12px 26px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-weight:700;
+  }
+  .btn-solid:hover{opacity:0.85;}
+
+  /* ===== GENERIC SECTION ===== */
+  section{padding:90px 0;position:relative;}
+  section.tight{padding:64px 0;}
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb{font-size:12.5px;color:var(--ink-soft);margin-bottom:0;}
+  .breadcrumb .sep{margin:0 8px;opacity:0.5;}
+
+  /* ===== ARTICLE HEADER ===== */
+  .article-tag{
+    display:inline-block;border:1px solid rgba(43,35,32,0.35);border-radius:20px;
+    padding:6px 16px;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;
+    font-weight:700;color:var(--ink);background:var(--fucsia);
+  }
+  .article-head{max-width:800px;margin:20px auto 44px;text-align:left;}
+  .article-head h1{font-size:38px;line-height:1.22;margin:16px 0 12px;}
+  .article-meta{font-size:13px;color:var(--ink-soft);margin:0;}
+  @media (max-width:760px){.article-head h1{font-size:27px;}}
+
+  /* ===== ARTICLE PHOTO (horizontal) ===== */
+  .article-photo{border-radius:22px;overflow:hidden;max-width:1000px;margin:0 auto 54px;aspect-ratio:16/8;}
+  .article-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  /* ===== ARTICLE BODY ===== */
+  .article-body{max-width:760px;margin:0 auto;}
+  .article-body h3{font-size:21px;line-height:1.35;margin:38px 0 14px;color:var(--ink);}
+  .article-body p{font-size:16px;line-height:1.85;color:var(--ink-soft);font-weight:400;margin:0 0 20px;}
+  .article-body ul,.article-body ol{margin:0 0 20px;padding-left:22px;}
+  .article-body li{font-size:16px;line-height:1.8;color:var(--ink-soft);font-weight:400;margin-bottom:10px;}
+  .article-body li strong,.article-body p strong{color:var(--ink);}
+  .article-callout{background:var(--cream-2);border:1.5px solid var(--fucsia);border-radius:16px;padding:26px 30px;margin:40px 0 6px;}
+  .article-callout p{margin:0;color:var(--ink);font-weight:400;font-size:16px;line-height:1.8;}
+
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--line);padding:56px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-grid h5{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 16px;font-weight:700;}
+  .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+  .foot-logo{height:34px;width:auto;margin-bottom:12px;}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:760px){
+    nav.wrap{height:78px;}
+    .logo-mark{height:58px;}
+    .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .hamburger{display:flex;}
+
+    section{padding:56px 0;}
+    section.tight{padding:40px 0;}
+
+    .article-body h3{font-size:19px;}
+    .article-callout{padding:20px 22px;}
+
+
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+
+
+<!-- ===================== NAV ===================== -->
+<header class="site">
+  <nav class="wrap">
+    <a href="index.html"><img class="logo-mark" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+    <div class="navlinks">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="productos.html">Productos</a>
+      <a href="blog.html" class="active">Sobre tu periodo</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a class="nav-cta" href="productos.html">Descubre tu LadyFree</a>
+    <button class="hamburger" id="menuBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="productos.html">Productos</a>
+    <a href="blog.html" class="active">Sobre tu periodo</a>
+    <a href="contacto.html">Contacto</a>
+    <a class="nav-cta-mobile" href="productos.html">Descubre tu LadyFree</a>
+  </div>
+</header>
+
+<main id="blog-post">
+
+  <section class="tight" style="padding-bottom:0;">
+    <div class="wrap" style="max-width:1000px;">
+      <div class="breadcrumb" style="margin-bottom:0;">
+        <a href="index.html">Inicio</a><span class="sep">/</span><a href="blog.html">Sobre tu periodo</a><span class="sep">/</span><span>Hinchazón</span>
+      </div>
+
+      <div class="article-head">
+        <span class="article-tag">Ciclo menstrual</span>
+        <h1>Periodo e hinchazón: por qué pasa y qué hacer para mitigarla</h1>
+        <p class="article-meta">Ciclo menstrual · 4 min de lectura</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;padding-bottom:0;">
+    <div class="wrap" style="max-width:1000px;">
+      <div class="article-photo">
+        <img src="assets/blog-hinchazon-nueva.jpg" alt="Mujer tomando té envuelta en una manta">
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap" style="max-width:1000px;">
+      <div class="article-body">
+
+        <p>Ese día en que te subes el pantalón favorito y de repente no cierra igual. La sensación de que tragaste un globo. La hinchazón antes y durante el periodo es una de esas cosas "que solo nosotras entendemos" y, spoiler, tiene una explicación bien real detrás. Aquí te contamos qué la provoca y qué puedes hacer para que se sienta un poco menos molesta.</p>
+
+        <h3>¿Por qué nos hinchamos?</h3>
+        <p>La causa exacta de la hinchazón premenstrual no está 100% definida, pero hay dos protagonistas que aparecen una y otra vez en la evidencia:</p>
+        <ol>
+          <li><strong>Las hormonas.</strong> En los días previos a tu periodo, la progesterona hace que el movimiento intestinal se vuelva más lento, lo que puede generar esa sensación de pesadez y distensión abdominal.</li>
+          <li><strong>La retención de líquido.</strong> Durante la menstruación es común retener algo más de agua de lo habitual —algunos estudios hablan de hasta medio kilo extra en promedio—, aunque los científicos todavía están afinando qué tan directa es esa relación con la hinchazón que sentimos.</li>
+        </ol>
+        <p>Dato curioso: la ciencia también descartó algunas teorías populares. Por ejemplo, no se ha encontrado que quienes se hinchan más tengan intestinos "más sensibles", ni que produzcan más gases que quienes no sienten hinchazón. O sea, no es que "hagas algo mal": es tu cuerpo respondiendo a cambios hormonales normales.</p>
+
+        <h3>¿Cuándo pega más fuerte?</h3>
+        <p>Generalmente la hinchazón alcanza su punto máximo el primer día de tu periodo y va bajando a medida que avanza el ciclo. Si notas que se repite mes a mes casi como un calendario, tranquila: es un patrón conocido, no una señal de alarma.</p>
+
+        <h3>Tips que sí ayudan (según la evidencia)</h3>
+        <ul>
+          <li><strong>Hidrátate, aunque suene contradictorio.</strong> Tomar suficiente agua (al menos 1,5 litros al día) ayuda a que tu cuerpo no retenga tanto líquido "por si acaso". Súmale agua con limón, té de jengibre o de menta, o agua de coco.</li>
+          <li><strong>Cuidado con la sal y el azúcar.</strong> Los alimentos muy salados, los ultraprocesados y los azúcares simples pueden favorecer la retención de líquido y la fermentación intestinal. No se trata de prohibirte nada, solo de moderar esos días.</li>
+          <li><strong>Suma potasio y magnesio.</strong> Plátano, palta, espinaca y otras verduras de hoja verde son aliados naturales contra la hinchazón.</li>
+          <li><strong>Prueba alimentos con efecto diurético natural</strong>, como el pepino, el espárrago o el jengibre.</li>
+          <li><strong>Muévete.</strong> Sí, otra vez el ejercicio: 30 minutos de actividad aeróbica regular (caminar rápido, bailar, andar en bici) ayuda a reducir varios síntomas premenstruales, incluida la hinchazón.</li>
+          <li><strong>Los probióticos pueden sumar</strong>, aunque su efecto se ha visto más ligado a reducir los gases que la hinchazón en sí.</li>
+        </ul>
+
+        <h3>¿Hinchazón o subida de peso real?</h3>
+        <p>Buena pregunta, porque a veces cuesta distinguirlas. La hinchazón por retención de líquido suele aparecer y desaparecer en pocos días —típicamente empieza antes de tu periodo y se va bajando durante el ciclo—, mientras que un cambio de peso real se mantiene en el tiempo. Si la balanza sube uno o dos días y después vuelve sola a la normalidad, lo más probable es que sea solo agua, no grasa ni nada que debas "corregir" con dietas extremas.</p>
+
+        <h3>¿Cuándo consultar a un profesional?</h3>
+        <p>Si la hinchazón es tan intensa que afecta tu día a día, o viene acompañada de cambios bruscos de peso, dolor muy fuerte o cambios digestivos que no son los de siempre, vale la pena conversarlo con un profesional de la salud. La mayoría de las veces, sin embargo, es solo tu cuerpo haciendo lo suyo durante unos días al mes.</p>
+
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html"><img class="foot-logo" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+      </div>
+      <div><h5>Navegación</h5><ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="blog.html">Sobre tu periodo</a></li>
+      </ul></div>
+      <div><h5>Ayuda</h5><ul>
+        <li><a href="contacto.html">Dónde encontrarnos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul></div>
+      <div><h5>Síguenos</h5><ul>
+        <li><a href="https://www.instagram.com/ladyfree.cl/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LadyFree — Diseño web (Lungo)</span>
+      <span>Contenido e imágenes referenciales</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(menuBtn){
+    menuBtn.addEventListener('click', function(){
+      mobileMenu.classList.toggle('open');
+    });
+  }
+</script>
+
+</body>
+</html>

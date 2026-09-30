@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LadyFree — Mejores apps para tu periodo</title>
+</head>
+<body>
+<style>
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadRoman.ttf') format('truetype');
+    font-weight:400;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadProBold.ttf') format('truetype');
+    font-weight:700;
+    font-style:normal;
+  }
+  :root{
+    --cream:#FBF3EE;
+    --cream-2:#F6E9E1;
+    --ink:#2B2320;
+    --ink-soft:#5A4F4A;
+    --fucsia:#D75F95;
+    --amarillo:#F6DB68;
+    --turquesa:#4BA2B0;
+    --verde:#ACC96F;
+    --azul:#4B4993;
+    --naranja:#E0833B;
+    --line:#E5D8CE;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:400;
+    color:var(--ink);
+    background:var(--cream);
+  }
+  h1,h2,h3,.serif{
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px;}
+  @media (max-width:760px){.wrap{padding:0 20px;}}
+
+  /* ===== NAV ===== */
+  header.site{
+    position:sticky;top:0;z-index:150;
+    background:rgba(251,243,238,0.94);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:118px;}
+  .logo-mark{height:104px;width:auto;display:block;cursor:pointer;}
+  .navlinks{display:flex;gap:30px;font-size:18px;letter-spacing:0.02em;}
+  .navlinks a{padding:6px 0;border-bottom:1px solid transparent;cursor:pointer;white-space:nowrap;}
+  .navlinks a.active,.navlinks a:hover{border-bottom:1px solid var(--fucsia);color:var(--fucsia);}
+  .nav-cta{
+    border:1px solid var(--ink);border-radius:30px;padding:9px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;
+  }
+  .nav-cta:hover{background:var(--ink);color:#fff;}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:6px;width:38px;height:38px;border:none;background:transparent;cursor:pointer;padding:0;flex:0 0 auto;}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;}
+  .mobile-menu{display:none;flex-direction:column;background:var(--cream);border-top:1px solid var(--line);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:18px 20px;border-bottom:1px solid var(--line);font-size:17px;}
+  .mobile-menu a.active{color:var(--fucsia);font-weight:700;}
+  .nav-cta-mobile{
+    border:1px solid var(--ink);border-radius:30px;padding:12px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;margin:20px;text-align:center;display:block;
+  }
+  .btn-solid{
+    display:inline-block;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:30px;
+    padding:12px 26px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-weight:700;
+  }
+  .btn-solid:hover{opacity:0.85;}
+
+  /* ===== GENERIC SECTION ===== */
+  section{padding:90px 0;position:relative;}
+  section.tight{padding:64px 0;}
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb{font-size:12.5px;color:var(--ink-soft);margin-bottom:0;}
+  .breadcrumb .sep{margin:0 8px;opacity:0.5;}
+
+  /* ===== ARTICLE HEADER ===== */
+  .article-tag{
+    display:inline-block;border:1px solid rgba(43,35,32,0.35);border-radius:20px;
+    padding:6px 16px;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;
+    font-weight:700;color:var(--ink);background:var(--amarillo);
+  }
+  .article-head{max-width:800px;margin:20px auto 44px;text-align:left;}
+  .article-head h1{font-size:38px;line-height:1.22;margin:16px 0 12px;}
+  .article-meta{font-size:13px;color:var(--ink-soft);margin:0;}
+  @media (max-width:760px){.article-head h1{font-size:27px;}}
+
+  /* ===== ARTICLE PHOTO (horizontal) ===== */
+  .article-photo{border-radius:22px;overflow:hidden;max-width:1000px;margin:0 auto 54px;aspect-ratio:16/8;}
+  .article-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  /* ===== ARTICLE BODY ===== */
+  .article-body{max-width:760px;margin:0 auto;}
+  .article-body h3{font-size:21px;line-height:1.35;margin:38px 0 14px;color:var(--ink);}
+  .article-body p{font-size:16px;line-height:1.85;color:var(--ink-soft);font-weight:400;margin:0 0 20px;}
+  .article-body ul,.article-body ol{margin:0 0 20px;padding-left:22px;}
+  .article-body li{font-size:16px;line-height:1.8;color:var(--ink-soft);font-weight:400;margin-bottom:10px;}
+  .article-body li strong,.article-body p strong{color:var(--ink);}
+  .article-callout{background:var(--cream-2);border:1.5px solid var(--fucsia);border-radius:16px;padding:26px 30px;margin:40px 0 6px;}
+  .article-callout p{margin:0;color:var(--ink);font-weight:400;font-size:16px;line-height:1.8;}
+
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--line);padding:56px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-grid h5{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 16px;font-weight:700;}
+  .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+  .foot-logo{height:34px;width:auto;margin-bottom:12px;}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:760px){
+    nav.wrap{height:78px;}
+    .logo-mark{height:58px;}
+    .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .hamburger{display:flex;}
+
+    section{padding:56px 0;}
+    section.tight{padding:40px 0;}
+
+    .article-body h3{font-size:19px;}
+    .article-callout{padding:20px 22px;}
+
+
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+
+
+<!-- ===================== NAV ===================== -->
+<header class="site">
+  <nav class="wrap">
+    <a href="index.html"><img class="logo-mark" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+    <div class="navlinks">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="productos.html">Productos</a>
+      <a href="blog.html" class="active">Sobre tu periodo</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a class="nav-cta" href="productos.html">Descubre tu LadyFree</a>
+    <button class="hamburger" id="menuBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="productos.html">Productos</a>
+    <a href="blog.html" class="active">Sobre tu periodo</a>
+    <a href="contacto.html">Contacto</a>
+    <a class="nav-cta-mobile" href="productos.html">Descubre tu LadyFree</a>
+  </div>
+</header>
+
+<main id="blog-post">
+
+  <section class="tight" style="padding-bottom:0;">
+    <div class="wrap" style="max-width:1000px;">
+      <div class="breadcrumb" style="margin-bottom:0;">
+        <a href="index.html">Inicio</a><span class="sep">/</span><a href="blog.html">Sobre tu periodo</a><span class="sep">/</span><span>Apps para tu periodo</span>
+      </div>
+
+      <div class="article-head">
+        <span class="article-tag">Tips</span>
+        <h1>Encontramos las mejores apps para que siempre estés preparada para tu periodo</h1>
+        <p class="article-meta">Tips · 3 min de lectura</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;padding-bottom:0;">
+    <div class="wrap" style="max-width:1000px;">
+      <div class="article-photo">
+        <img src="assets/blog-apps.jpg" alt="Mujer revisando una app de calendario menstrual en su celular">
+      </div>
+    </div>
+  </section>
+
+  <section class="tight">
+    <div class="wrap" style="max-width:1000px;">
+      <div class="article-body">
+
+        <p>Hay personas que tienen su ciclo anotado en una app, con alarmas, colores y hasta gráficos. Y hay personas a las que simplemente "les llega" —sin aviso, sin drama, sin calendario. Ninguna forma es la correcta. Ninguna es mejor que la otra. Pero si eres de las que le gusta ir un pasito adelante (o quieres empezar a estarlo), acá te dejamos algunas apps que pueden ayudarte a que tu periodo te agarre preparada y no en llamas.</p>
+
+        <h3>Para las que quieren predicciones certeras</h3>
+        <p><strong>Flo</strong> es una de las apps más usadas en el mundo (con cientos de millones de descargas), y no es casualidad: además de predecir tu próximo periodo y tus días fértiles, te deja registrar más de 70 síntomas distintos y tiene contenido hecho con equipos médicos. Es ideal si te gusta entender bien qué le pasa a tu cuerpo mes a mes.</p>
+        <p><strong>Clue</strong> es otra favorita, especialmente si valoras un enfoque más clínico y directo: predice tu periodo, tu ventana fértil y el síndrome premenstrual, y hace seguimiento de cientos de síntomas distintos. Un plus para las más cuidadosas con sus datos: distintos análisis de privacidad la ubican entre las apps de este tipo que mejor cuidan tu información.</p>
+
+        <h3>Para las que recién empiezan a llevar registro</h3>
+        <p>Si nunca has usado una app y te da un poco de lata partir, busca una simple: la mayoría de los calendarios menstruales actuales usan inteligencia artificial para ir ajustando sus predicciones incluso si tu ciclo es irregular, muestran gráficos fáciles de leer de síntomas, peso o temperatura, y te mandan recordatorios para que no te agarre desprevenida (ni a ti, ni a tu cartera).</p>
+
+        <h3>Para las que les importa mucho la privacidad</h3>
+        <p>Si te preocupa qué pasa con tus datos más íntimos, existen opciones pensadas justamente para eso: apps que guardan la información solo en tu teléfono, sin subirla a la nube ni compartirla con nadie. Antes de elegir una app, un buen hábito es revisar en su ficha qué datos pide y si los comparte con terceros —total, se trata de tu cuerpo y tu información.</p>
+
+        <h3>¿Y si prefieres algo más simple?</h3>
+        <p>No todo el mundo necesita gráficos, estadísticas ni modo IA. Si lo tuyo es lo básico, hay apps de calendario menstrual mucho más simples, que solo marcan el día estimado de tu próximo periodo y te mandan una notificación un par de días antes. A veces menos es más, sobre todo si las apps muy completas terminan dando lata de usar y las abandonas a la semana (nos ha pasado a todas).</p>
+        <p>Y si de plano las apps no son lo tuyo, un recordatorio en el celular, una alarma mensual o incluso una alarma en tu casillero mental funcionan igual de bien. Lo importante no es la herramienta, es que te sirva a ti.</p>
+
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html"><img class="foot-logo" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+      </div>
+      <div><h5>Navegación</h5><ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="blog.html">Sobre tu periodo</a></li>
+      </ul></div>
+      <div><h5>Ayuda</h5><ul>
+        <li><a href="contacto.html">Dónde encontrarnos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul></div>
+      <div><h5>Síguenos</h5><ul>
+        <li><a href="https://www.instagram.com/ladyfree.cl/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LadyFree — Diseño web (Lungo)</span>
+      <span>Contenido e imágenes referenciales</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(menuBtn){
+    menuBtn.addEventListener('click', function(){
+      mobileMenu.classList.toggle('open');
+    });
+  }
+</script>
+
+</body>
+</html>

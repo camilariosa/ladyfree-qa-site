@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LadyFree — Toalla Nocturna con Alas</title>
+</head>
+<body>
+<style>
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadRoman.ttf') format('truetype');
+    font-weight:400;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadProBold.ttf') format('truetype');
+    font-weight:700;
+    font-style:normal;
+  }
+  :root{
+    --cream:#FBF3EE;
+    --cream-2:#F6E9E1;
+    --ink:#2B2320;
+    --ink-soft:#5A4F4A;
+    --fucsia:#D75F95;
+    --amarillo:#F6DB68;
+    --turquesa:#4BA2B0;
+    --verde:#ACC96F;
+    --azul:#4B4993;
+    --naranja:#E0833B;
+    --line:#E5D8CE;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:400;
+    color:var(--ink);
+    background:var(--cream);
+  }
+  h1,h2,h3,.serif{
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px;}
+  @media (max-width:760px){.wrap{padding:0 20px;}}
+
+  .section-label{
+    text-align:center;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--fucsia);font-weight:700;margin-bottom:6px;
+  }
+
+  /* ===== NAV ===== */
+  header.site{
+    position:sticky;top:0;z-index:150;
+    background:rgba(251,243,238,0.94);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:118px;}
+  .logo-mark{height:104px;width:auto;display:block;cursor:pointer;}
+  .navlinks{display:flex;gap:30px;font-size:18px;letter-spacing:0.02em;}
+  .navlinks a{padding:6px 0;border-bottom:1px solid transparent;cursor:pointer;white-space:nowrap;}
+  .navlinks a.active,.navlinks a:hover{border-bottom:1px solid var(--fucsia);color:var(--fucsia);}
+  .nav-cta{
+    border:1px solid var(--ink);border-radius:30px;padding:9px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;
+  }
+  .nav-cta:hover{background:var(--ink);color:#fff;}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:6px;width:38px;height:38px;border:none;background:transparent;cursor:pointer;padding:0;flex:0 0 auto;}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;}
+  .mobile-menu{display:none;flex-direction:column;background:var(--cream);border-top:1px solid var(--line);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:18px 20px;border-bottom:1px solid var(--line);font-size:17px;}
+  .mobile-menu a.active{color:var(--fucsia);font-weight:700;}
+  .nav-cta-mobile{
+    border:1px solid var(--ink);border-radius:30px;padding:12px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;margin:20px;text-align:center;display:block;
+  }
+
+  .btn-outline{
+    display:inline-block;border:1px solid currentColor;border-radius:30px;
+    padding:12px 26px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
+    background:transparent;font-weight:700;
+  }
+  .btn-outline.dark{color:var(--ink);}
+  .btn-outline.dark:hover{background:var(--ink);color:#fff;}
+  .btn-outline.light:hover{background:#fff;color:var(--ink);}
+  .btn-solid{
+    display:inline-block;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:30px;
+    padding:12px 26px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-weight:700;
+  }
+  .btn-solid:hover{opacity:0.85;}
+
+  /* ===== GENERIC SECTION ===== */
+  section{padding:90px 0;position:relative;}
+  section.tight{padding:64px 0;}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb{font-size:12.5px;color:var(--ink-soft);margin-bottom:0;}
+  .breadcrumb a:hover{color:var(--fucsia);}
+  .breadcrumb .sep{margin:0 8px;opacity:0.5;}
+
+  /* ===== PRODUCT DETAIL (ficha de producto) ===== */
+  .pdp{display:grid;grid-template-columns:0.9fr 1fr;gap:70px;align-items:center;}
+  @media (max-width:860px){.pdp{grid-template-columns:1fr;gap:36px;}}
+  .pdp-photo{background:#fff;border-radius:22px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;padding:16px;position:relative;overflow:hidden;}
+  .pdp-photo img{max-width:100%;max-height:100%;object-fit:contain;}
+  .pdp-photo .pdp-slide{position:absolute;max-width:calc(100% - 32px);max-height:calc(100% - 32px);opacity:0;transition:opacity .35s ease;}
+  .pdp-photo .pdp-slide.active{opacity:1;position:relative;}
+  .pdp-dots{position:absolute;bottom:16px;left:0;right:0;display:flex;justify-content:center;gap:8px;}
+  .pdp-dot{width:8px;height:8px;border-radius:50%;border:none;background:rgba(43,35,32,0.25);cursor:pointer;padding:0;}
+  .pdp-dot.active{background:var(--ink);}
+  .pdp-info h1{font-size:52px;line-height:1.15;margin:0 0 12px;}
+  .pdp-info .pdp-tagline{color:var(--fucsia);font-size:25px;font-weight:700;margin:0 0 26px;}
+  .pdp-info .pdp-desc{font-size:19.5px;line-height:1.8;color:var(--ink-soft);font-weight:400;margin:0 0 32px;max-width:460px;}
+  @media (max-width:760px){.pdp-info h1{font-size:39px;}}
+
+  /* ===== ¿POR QUÉ LA ULTRAFINA? (atributos numerados) ===== */
+  .why-section{background:var(--cream-2);}
+  .why-section h2{color:var(--fucsia);font-size:32px;margin:0 0 44px;text-align:center;}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 44px;}
+  @media (max-width:760px){.why-grid{grid-template-columns:1fr;}}
+  .why-item{display:flex;gap:16px;align-items:flex-start;}
+  .why-num{flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--fucsia);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .why-item p{margin:0;font-size:17.4px;line-height:1.65;color:var(--ink-soft);font-weight:400;}
+
+  /* ===== STATEMENT (bajada editorial, estilo cora.com) ===== */
+  .statement-head{max-width:880px;margin:0 auto 56px;text-align:center;}
+  .statement-head .section-label{margin-bottom:18px;}
+  .statement-head h2{font-size:22px;margin:0 0 24px;color:var(--ink-soft);font-weight:700;letter-spacing:-0.005em;}
+  .statement-head p{
+    font-size:32px;line-height:1.48;color:var(--ink);font-weight:400;margin:0;
+    letter-spacing:-0.01em;
+  }
+  @media (max-width:760px){.statement-head p{font-size:22px;line-height:1.5;} .statement-head h2{font-size:18px;}}
+
+  /* ===== QUIEBRE DE COLOR (foto izq + texto der con fondo de línea) ===== */
+  .color-break{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;}
+  @media (max-width:860px){.color-break{grid-template-columns:1fr;}}
+  .cb-image{min-height:420px;overflow:hidden;}
+  .cb-image img{width:100%;height:100%;object-fit:cover;display:block;}
+  .cb-text{background:var(--turquesa);color:#fff;padding:90px 70px;display:flex;flex-direction:column;justify-content:center;}
+  @media (max-width:760px){.cb-text{padding:56px 24px;}}
+  .cb-text .eyebrow{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin:0 0 16px;font-weight:700;}
+  .cb-text h2{font-size:34px;line-height:1.3;margin:0 0 20px;max-width:480px;color:#fff;}
+  .cb-text p{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.88);font-weight:400;margin:0 0 30px;max-width:440px;}
+  .cb-text .btn-outline{align-self:flex-start;}
+
+  /* ===== PRODUCTOS (carrusel estilo ecommerce, sin carrito) ===== */
+  .products-section{background:var(--cream);}
+  .products-head{text-align:center;max-width:640px;margin:0 auto 50px;}
+  .products-head h2{color:var(--fucsia);font-size:34px;margin:0 0 14px;}
+  .products-head p{font-size:15px;line-height:1.7;color:var(--ink-soft);font-weight:400;margin:0;}
+  .product-carousel{display:flex;flex-wrap:nowrap;justify-content:center;gap:16px;padding:6px 6px 18px;}
+  .product-card{position:relative;flex:1 1 0;min-width:0;background:#EFE5DC;border-radius:20px;padding:20px 14px 20px;text-align:center;}
+  .product-photo{height:150px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;background:#fff;border-radius:12px;padding:8px;}
+  .product-photo img{max-width:100%;max-height:100%;object-fit:contain;}
+  .product-cat{font-size:10.5px;line-height:1.35;text-transform:uppercase;letter-spacing:0.05em;color:var(--turquesa);font-weight:700;margin-bottom:6px;min-height:2.7em;display:flex;align-items:center;justify-content:center;}
+  .product-name{font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:10px;}
+  .product-card .btn-outline{padding:9px 16px;font-size:9.5px;margin-top:4px;}
+
+  /* ===== SÍGUENOS (redes sociales) ===== */
+  .follow-section{background:#EFE5DC;text-align:center;}
+  .find-us-section{background:var(--cream);text-align:center;padding:64px 0;}
+  .find-us-text{font-size:32px;color:var(--fucsia);margin:0 0 32px;font-weight:700;}
+  .find-us-logo{height:56px;display:flex;align-items:center;justify-content:center;margin:0 auto;}
+  .find-us-logo img{height:100%;width:auto;max-width:200px;object-fit:contain;}
+  .follow-section h2{color:var(--ink);font-size:32px;margin:0 0 42px;}
+  .follow-photos{display:flex;gap:18px;margin-bottom:34px;}
+  .follow-photo{flex:1 1 0;min-width:0;aspect-ratio:1/1.05;border-radius:4px;overflow:hidden;}
+  .follow-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .follow-handles{display:flex;justify-content:center;gap:36px;flex-wrap:wrap;}
+  .follow-handle{display:inline-flex;align-items:center;gap:9px;color:var(--ink);font-size:15px;font-weight:700;}
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--line);padding:56px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-grid h5{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 16px;font-weight:700;}
+  .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+  .foot-logo{height:34px;width:auto;margin-bottom:12px;}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:760px){
+    nav.wrap{height:78px;}
+    .logo-mark{height:58px;}
+    .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .hamburger{display:flex;}
+
+    section{padding:56px 0;}
+    section.tight{padding:40px 0;}
+
+    .why-section h2{font-size:24px;}
+    .why-item p{font-size:15.5px;}
+
+    .products-head h2{font-size:26px;}
+    .product-carousel{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;justify-content:flex-start;}
+    .product-card{flex:0 0 62%;scroll-snap-align:start;}
+
+    .cb-text h2{font-size:26px;}
+
+    .follow-section h2{font-size:24px;}
+    .find-us-text{font-size:24px;}
+    .follow-photos{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+    .follow-photo{flex:0 0 118px;}
+
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+
+
+<!-- ===================== NAV ===================== -->
+<header class="site">
+  <nav class="wrap">
+    <a href="index.html"><img class="logo-mark" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+    <div class="navlinks">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="productos.html" class="active">Productos</a>
+      <a href="blog.html">Sobre tu periodo</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a class="nav-cta" href="productos.html">Descubre tu LadyFree</a>
+    <button class="hamburger" id="menuBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="productos.html" class="active">Productos</a>
+    <a href="blog.html">Sobre tu periodo</a>
+    <a href="contacto.html">Contacto</a>
+    <a class="nav-cta-mobile" href="productos.html">Descubre tu LadyFree</a>
+  </div>
+</header>
+
+<main id="producto">
+
+  <!-- FICHA DE PRODUCTO -->
+  <section class="tight" style="padding-bottom:60px;">
+    <div class="wrap">
+      <div class="breadcrumb" style="margin-bottom:34px;">
+        <a href="index.html">Inicio</a><span class="sep">/</span><a href="productos.html">Productos</a><span class="sep">/</span><span>Nocturna con Alas</span>
+      </div>
+      <div class="pdp">
+        <div class="pdp-photo" id="pdpPhoto">
+          <img src="assets/prod-nocturna-alas-info.jpg" alt="LadyFree Toalla Higiénica Nocturna con Alas - beneficios" class="pdp-slide active" data-slide="0">
+          <img src="assets/prod-nocturna-alas-crop.png" alt="LadyFree Toalla Higiénica Nocturna con Alas" class="pdp-slide" data-slide="1">
+          <div class="pdp-dots">
+            <button class="pdp-dot active" data-i="0" aria-label="Ver foto 1"></button>
+            <button class="pdp-dot" data-i="1" aria-label="Ver foto 2"></button>
+          </div>
+        </div>
+        <div class="pdp-info">
+          <h1>Toalla nocturna con alas</h1>
+          <p class="pdp-tagline">Máxima protección, toda la noche</p>
+          <p class="pdp-desc">Toalla higiénica nocturna con alas, diseñada para brindarte máxima protección durante periodos de flujo abundante. Su diseño más largo entrega mayor cobertura, con canales y centro absorbentes que distribuyen rápidamente los fluidos para mantenerte seca y segura durante toda la noche.</p>
+          <a class="btn-outline dark" href="contacto.html">Dónde comprar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ¿POR QUÉ ESTE PRODUCTO DE LADYFREE? -->
+  <section class="why-section tight">
+    <div class="wrap" style="max-width:1020px;">
+      <h2>¿Por qué la nocturna con alas de LadyFree?</h2>
+      <div class="why-grid">
+        <div class="why-item"><span class="why-num">1</span><p>Diseño nocturno más largo para mayor cobertura y protección durante el descanso.</p></div>
+        <div class="why-item"><span class="why-num">2</span><p>Canales absorbentes que ayudan a distribuir rápidamente el flujo para una absorción eficiente.</p></div>
+        <div class="why-item"><span class="why-num">3</span><p>Con alas para mejorar la fijación y brindar mayor protección lateral.</p></div>
+        <div class="why-item"><span class="why-num">4</span><p>Especialmente diseñada para flujo abundante.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÁS PRODUCTOS LADYFREE -->
+  <section class="products-section tight">
+    <div class="wrap" style="max-width:1400px;">
+      <div class="products-head">
+        <h2>Más productos LadyFree</h2>
+        <p>Conoce el resto de la línea, pensada para acompañarte en cada momento.</p>
+      </div>
+      <div class="product-carousel">
+        <a class="product-card" href="producto.html">
+          <div class="product-photo">
+            <img src="assets/prod-ultrafina-alas-crop.png" alt="LadyFree Ultra Fina con Alas">
+          </div>
+          <div class="product-cat">Protección invisible</div>
+          <div class="product-name">Ultra fina con alas</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card" href="producto-protectores-diarios.html">
+          <div class="product-photo">
+            <img src="assets/prod-protectores-x100-crop.png" alt="LadyFree Protectores Diarios Ultra Delgados x100">
+          </div>
+          <div class="product-cat">Frescura diaria</div>
+          <div class="product-name">Protectores diarios</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card" href="producto-protectores-largos.html">
+          <div class="product-photo">
+            <img src="assets/prod-protectores-largos-crop.png" alt="LadyFree Protectores Diarios Largos">
+          </div>
+          <div class="product-cat">Frescura diaria reforzada</div>
+          <div class="product-name">Protectores diarios largos</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card" href="producto-normal-alas.html">
+          <div class="product-photo">
+            <img src="assets/prod-normal-alas-crop.png" alt="LadyFree Normal con Alas">
+          </div>
+          <div class="product-cat">Protección confiable</div>
+          <div class="product-name">Normal con alas</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card" href="producto-basica.html">
+          <div class="product-photo">
+            <img src="assets/prod-basica-crop.png" alt="LadyFree Básica">
+          </div>
+          <div class="product-cat">Protección esencial</div>
+          <div class="product-name">Básica</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DÓNDE ENCONTRARLAS -->
+  <section class="find-us-section">
+    <div class="wrap">
+      <p class="find-us-text">Encuéntralas en</p>
+      <a class="find-us-logo" href="https://www.liquimax.cl/collections/lady-free" target="_blank" rel="noopener"><img src="assets/logo-liquimax-nuevo.png" alt="Liquimax"></a>
+    </div>
+  </section>
+
+  <!-- ¿YA LEÍSTE NUESTRO BLOG? (quiebre de color) -->
+  <section class="color-break" style="padding-bottom:0;">
+    <div class="cb-image">
+      <img src="assets/blog-photo-pdp.jpg" alt="Mujer sosteniendo un paquete de LadyFree Protectores Diarios Largos">
+    </div>
+    <div class="cb-text">
+      <div class="eyebrow">Blog LadyFree</div>
+      <h2>¿Ya leíste nuestro blog?</h2>
+      <p>Queremos que te sientas segura, siempre.</p>
+      <a class="btn-outline light" href="blog.html">Leer en el blog</a>
+    </div>
+  </section>
+
+  <!-- SÍGUENOS EN REDES SOCIALES -->
+  <section class="follow-section">
+    <div class="wrap" style="max-width:1400px;">
+      <h2>Síguenos y sé parte de la comunidad LadyFree</h2>
+      <div class="follow-photos">
+        <div class="follow-photo"><img src="assets/social-dolor.jpg" alt="Mujer con dolor de periodo en su casa"></div>
+        <div class="follow-photo"><img src="assets/social-gym.jpg" alt="Mujer haciendo ejercicio en el gimnasio"></div>
+        <div class="follow-photo"><img src="assets/social-tienda.jpg" alt="Mujer eligiendo LadyFree en el supermercado"></div>
+        <div class="follow-photo"><img src="assets/social-picnic.jpg" alt="Amigas compartiendo un picnic"></div>
+        <div class="follow-photo"><img src="assets/social-bolso.jpg" alt="Mujer guardando LadyFree en su bolso"></div>
+      </div>
+      <div class="follow-handles">
+        <a class="follow-handle" href="https://www.instagram.com/ladyfree.cl/" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"></circle></svg>
+          @ladyfree.cl
+        </a>
+        <span class="follow-handle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.2c-.9-.8-1.5-1.9-1.6-3.2h-3.1v13.4c0 1.5-1.2 2.7-2.7 2.7-1.5 0-2.7-1.2-2.7-2.7 0-1.5 1.2-2.7 2.7-2.7.3 0 .6.05.9.14V9.5a6 6 0 0 0-.9-.07 5.9 5.9 0 1 0 5.9 5.9V9.1c1.1.8 2.4 1.3 3.8 1.3V7.3c-.9 0-1.7-.3-2.3-.8z"></path></svg>
+          @ladyfree.cl
+        </span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html"><img class="foot-logo" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+      </div>
+      <div><h5>Navegación</h5><ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="blog.html">Sobre tu periodo</a></li>
+      </ul></div>
+      <div><h5>Ayuda</h5><ul>
+        <li><a href="contacto.html">Dónde encontrarnos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul></div>
+      <div><h5>Síguenos</h5><ul>
+        <li><a href="https://www.instagram.com/ladyfree.cl/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LadyFree — Diseño web (Lungo)</span>
+      <span>Contenido e imágenes referenciales</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(menuBtn){
+    menuBtn.addEventListener('click', function(){
+      mobileMenu.classList.toggle('open');
+    });
+  }
+
+  var pdpPhoto = document.getElementById('pdpPhoto');
+  if(pdpPhoto){
+    var pdpSlides = pdpPhoto.querySelectorAll('.pdp-slide');
+    var pdpDots = pdpPhoto.querySelectorAll('.pdp-dot');
+    pdpDots.forEach(function(dot){
+      dot.addEventListener('click', function(){
+        var i = this.getAttribute('data-i');
+        pdpSlides.forEach(function(s){ s.classList.toggle('active', s.getAttribute('data-slide') === i); });
+        pdpDots.forEach(function(d){ d.classList.toggle('active', d === dot); });
+      });
+    });
+  }
+</script>
+
+</body>
+</html>

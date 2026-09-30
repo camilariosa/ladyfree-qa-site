@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LadyFree — Productos</title>
+</head>
+<body>
+<style>
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadRoman.ttf') format('truetype');
+    font-weight:400;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadProBold.ttf') format('truetype');
+    font-weight:700;
+    font-style:normal;
+  }
+  :root{
+    --cream:#FBF3EE;
+    --cream-2:#F6E9E1;
+    --ink:#2B2320;
+    --ink-soft:#5A4F4A;
+    --fucsia:#D75F95;
+    --amarillo:#F6DB68;
+    --turquesa:#4BA2B0;
+    --verde:#ACC96F;
+    --azul:#4B4993;
+    --naranja:#E0833B;
+    --line:#E5D8CE;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:400;
+    color:var(--ink);
+    background:var(--cream);
+  }
+  h1,h2,h3,.serif{
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px;}
+  @media (max-width:760px){.wrap{padding:0 20px;}}
+
+  .section-label{
+    text-align:center;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--fucsia);font-weight:700;margin-bottom:6px;
+  }
+
+  /* ===== NAV ===== */
+  header.site{
+    position:sticky;top:0;z-index:150;
+    background:rgba(251,243,238,0.94);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:118px;}
+  .logo-mark{height:104px;width:auto;display:block;cursor:pointer;}
+  .navlinks{display:flex;gap:30px;font-size:18px;letter-spacing:0.02em;}
+  .navlinks a{padding:6px 0;border-bottom:1px solid transparent;cursor:pointer;white-space:nowrap;}
+  .navlinks a.active,.navlinks a:hover{border-bottom:1px solid var(--fucsia);color:var(--fucsia);}
+  .nav-cta{
+    border:1px solid var(--ink);border-radius:30px;padding:9px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;
+  }
+  .nav-cta:hover{background:var(--ink);color:#fff;}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:6px;width:38px;height:38px;border:none;background:transparent;cursor:pointer;padding:0;flex:0 0 auto;}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;}
+  .mobile-menu{display:none;flex-direction:column;background:var(--cream);border-top:1px solid var(--line);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:18px 20px;border-bottom:1px solid var(--line);font-size:17px;}
+  .mobile-menu a.active{color:var(--fucsia);font-weight:700;}
+  .nav-cta-mobile{
+    border:1px solid var(--ink);border-radius:30px;padding:12px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;margin:20px;text-align:center;display:block;
+  }
+
+  .btn-outline{
+    display:inline-block;border:1px solid currentColor;border-radius:30px;
+    padding:12px 26px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
+    background:transparent;font-weight:700;
+  }
+  .btn-outline.dark{color:var(--ink);}
+  .btn-outline.dark:hover{background:var(--ink);color:#fff;}
+  .btn-outline.light:hover{background:#fff;color:var(--ink);}
+  .btn-solid{
+    display:inline-block;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:30px;
+    padding:12px 26px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-weight:700;
+  }
+  .btn-solid:hover{opacity:0.85;}
+
+  /* ===== GENERIC SECTION ===== */
+  section{padding:90px 0;position:relative;}
+  section.tight{padding:64px 0;}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb{font-size:12.5px;color:var(--ink-soft);margin-bottom:0;}
+  .breadcrumb a:hover{color:var(--fucsia);}
+  .breadcrumb .sep{margin:0 8px;opacity:0.5;}
+
+  /* ===== PRODUCTOS (catálogo, tarjetas grandes 3 por fila) ===== */
+  .products-head{text-align:center;max-width:640px;margin:0 auto 50px;}
+  .products-head h2{color:var(--fucsia);font-size:34px;margin:0 0 14px;}
+  .products-head p{font-size:15px;line-height:1.7;color:var(--ink-soft);font-weight:400;margin:0;}
+
+  .product-card{position:relative;background:#EFE5DC;border-radius:20px;padding:20px 14px 20px;text-align:center;}
+  .product-photo{height:150px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;background:#fff;border-radius:12px;padding:8px;}
+  .product-photo img{max-width:100%;max-height:100%;object-fit:contain;}
+  .product-cat{font-size:10.5px;line-height:1.35;text-transform:uppercase;letter-spacing:0.05em;color:var(--turquesa);font-weight:700;margin-bottom:6px;min-height:2.7em;display:flex;align-items:center;justify-content:center;}
+  .product-name{font-size:14.5px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:10px;}
+  .product-card .btn-outline{padding:9px 16px;font-size:9.5px;margin-top:4px;background:#fff;border-color:#fff;}
+  .product-card .btn-outline:hover{background:var(--ink);border-color:var(--ink);color:#fff;}
+
+  .catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:10px;}
+  @media (max-width:860px){.catalog-grid{grid-template-columns:1fr 1fr;}}
+  .product-card.lg{padding:36px 30px 32px;border-radius:24px;}
+  .product-card.lg .product-photo{height:270px;border-radius:16px;padding:18px;margin-bottom:24px;}
+  .product-card.lg .product-cat{font-size:12px;min-height:auto;margin-bottom:12px;}
+  .product-card.lg .product-name{font-size:20px;margin-bottom:20px;}
+  .product-card.lg .btn-outline{padding:13px 26px;font-size:11px;}
+
+  /* ===== BANNER FULL-BLEED (foto + texto superpuesto, 1920x720) ===== */
+  .banner-overlay{
+    position:relative;width:100%;aspect-ratio:1920/720;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .banner-overlay img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  }
+  .banner-overlay::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(30,20,15,0.10) 0%, rgba(30,20,15,0.32) 60%, rgba(30,20,15,0.46) 100%);
+  }
+  .banner-text{position:relative;z-index:2;text-align:center;padding:0 40px;}
+  .banner-text .line-1{
+    font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;
+    color:var(--amarillo);font-size:56px;line-height:1.25;margin:0 0 18px;
+    text-shadow:0 3px 24px rgba(0,0,0,0.45);letter-spacing:0.001em;
+  }
+  .banner-text .line-2{
+    font-size:19px;letter-spacing:0.03em;color:#fff;font-weight:700;margin:0;
+    text-shadow:0 2px 14px rgba(0,0,0,0.4);
+  }
+  @media (max-width:760px){
+    .banner-text .line-1{font-size:32px;}
+    .banner-text .line-2{font-size:14px;}
+  }
+
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--line);padding:56px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-grid h5{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 16px;font-weight:700;}
+  .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+  .foot-logo{height:34px;width:auto;margin-bottom:12px;}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:760px){
+    nav.wrap{height:78px;}
+    .logo-mark{height:58px;}
+    .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .hamburger{display:flex;}
+
+    section{padding:56px 0;}
+    section.tight{padding:40px 0;}
+
+    .products-head h2{font-size:26px;}
+    .catalog-grid{grid-template-columns:1fr;gap:24px;}
+    .product-card.lg .product-photo{height:220px;}
+
+    .banner-text .line-1{font-size:24px;}
+
+
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+
+
+<!-- ===================== NAV ===================== -->
+<header class="site">
+  <nav class="wrap">
+    <a href="index.html"><img class="logo-mark" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+    <div class="navlinks">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="productos.html" class="active">Productos</a>
+      <a href="blog.html">Sobre tu periodo</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a class="nav-cta" href="productos.html">Descubre tu LadyFree</a>
+    <button class="hamburger" id="menuBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="productos.html" class="active">Productos</a>
+    <a href="blog.html">Sobre tu periodo</a>
+    <a href="contacto.html">Contacto</a>
+    <a class="nav-cta-mobile" href="productos.html">Descubre tu LadyFree</a>
+  </div>
+</header>
+
+<main id="productos">
+
+  <!-- CATÁLOGO DE PRODUCTOS -->
+  <section class="tight" style="padding-bottom:70px;">
+    <div class="wrap" style="max-width:1280px;">
+      <div class="breadcrumb" style="margin-bottom:34px;">
+        <a href="index.html">Inicio</a><span class="sep">/</span><span>Productos</span>
+      </div>
+      <div class="products-head">
+        <div class="section-label">Catálogo</div>
+        <h2>Nuestros productos</h2>
+        <p>Encuentra la protección ideal para cada momento de tu periodo. Toallas y protectores diarios pensados para acompañarte, siempre.</p>
+      </div>
+
+      <div class="catalog-grid">
+
+        <a class="product-card lg" href="producto.html">
+          <div class="product-photo">
+            <img src="assets/prod-ultrafina-alas-crop.png" alt="LadyFree Ultra Fina con Alas">
+          </div>
+          <div class="product-cat">Protección invisible</div>
+          <div class="product-name">Ultra fina con alas</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card lg" href="producto-nocturna-alas.html">
+          <div class="product-photo">
+            <img src="assets/prod-nocturna-alas-crop.png" alt="LadyFree Nocturna con Alas">
+          </div>
+          <div class="product-cat">Máxima protección, toda la noche</div>
+          <div class="product-name">Nocturna con alas</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card lg" href="producto-protectores-diarios.html">
+          <div class="product-photo">
+            <img src="assets/prod-protectores-x100-crop.png" alt="LadyFree Protectores Diarios Ultra Delgados x100">
+          </div>
+          <div class="product-cat">Frescura diaria</div>
+          <div class="product-name">Protectores diarios</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card lg" href="producto-protectores-largos.html">
+          <div class="product-photo">
+            <img src="assets/prod-protectores-largos-crop.png" alt="LadyFree Protectores Diarios Largos">
+          </div>
+          <div class="product-cat">Frescura diaria reforzada</div>
+          <div class="product-name">Protectores diarios largos</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card lg" href="producto-normal-alas.html">
+          <div class="product-photo">
+            <img src="assets/prod-normal-alas-crop.png" alt="LadyFree Normal con Alas">
+          </div>
+          <div class="product-cat">Protección confiable</div>
+          <div class="product-name">Normal con alas</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+        <a class="product-card lg" href="producto-basica.html">
+          <div class="product-photo">
+            <img src="assets/prod-basica-crop.png" alt="LadyFree Básica">
+          </div>
+          <div class="product-cat">Protección esencial</div>
+          <div class="product-name">Básica</div>
+          <span class="btn-outline dark">Conocer más</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER FULL-BLEED: EXISTE UNA PARA CADA MOMENTO -->
+  <section class="banner-overlay" style="padding:0;">
+    <img src="assets/banner-cada-momento.jpg" alt="Mujer caminando con su perro en un cerro con vista a Santiago">
+    <div class="banner-text">
+      <p class="line-1">Existe una para cada momento.</p>
+      <p class="line-2">PORQUE QUEREMOS TU MEJOR VERSIÓN.</p>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html"><img class="foot-logo" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+      </div>
+      <div><h5>Navegación</h5><ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="blog.html">Sobre tu periodo</a></li>
+      </ul></div>
+      <div><h5>Ayuda</h5><ul>
+        <li><a href="contacto.html">Dónde encontrarnos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul></div>
+      <div><h5>Síguenos</h5><ul>
+        <li><a href="https://www.instagram.com/ladyfree.cl/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LadyFree — Diseño web (Lungo)</span>
+      <span>Contenido e imágenes referenciales</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(menuBtn){
+    menuBtn.addEventListener('click', function(){
+      mobileMenu.classList.toggle('open');
+    });
+  }
+</script>
+
+</body>
+</html>

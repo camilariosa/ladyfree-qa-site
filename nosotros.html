@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LadyFree — Nosotros</title>
+</head>
+<body>
+<style>
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadRoman.ttf') format('truetype');
+    font-weight:400;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadProBold.ttf') format('truetype');
+    font-weight:700;
+    font-style:normal;
+  }
+  :root{
+    --cream:#FBF3EE;
+    --cream-2:#F6E9E1;
+    --ink:#2B2320;
+    --ink-soft:#5A4F4A;
+    --fucsia:#D75F95;
+    --amarillo:#F6DB68;
+    --turquesa:#4BA2B0;
+    --verde:#ACC96F;
+    --azul:#4B4993;
+    --naranja:#E0833B;
+    --line:#E5D8CE;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:400;
+    color:var(--ink);
+    background:var(--cream);
+  }
+  h1,h2,h3,.serif{
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px;}
+  @media (max-width:760px){.wrap{padding:0 20px;}}
+
+  .section-label{
+    text-align:center;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--fucsia);font-weight:700;margin-bottom:6px;
+  }
+
+  /* ===== NAV ===== */
+  header.site{
+    position:sticky;top:0;z-index:150;
+    background:rgba(251,243,238,0.94);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:118px;}
+  .logo-mark{height:104px;width:auto;display:block;cursor:pointer;}
+  .navlinks{display:flex;gap:30px;font-size:18px;letter-spacing:0.02em;}
+  .navlinks a{padding:6px 0;border-bottom:1px solid transparent;cursor:pointer;white-space:nowrap;}
+  .navlinks a.active,.navlinks a:hover{border-bottom:1px solid var(--fucsia);color:var(--fucsia);}
+  .nav-cta{
+    border:1px solid var(--ink);border-radius:30px;padding:9px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;
+  }
+  .nav-cta:hover{background:var(--ink);color:#fff;}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:6px;width:38px;height:38px;border:none;background:transparent;cursor:pointer;padding:0;flex:0 0 auto;}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;}
+  .mobile-menu{display:none;flex-direction:column;background:var(--cream);border-top:1px solid var(--line);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:18px 20px;border-bottom:1px solid var(--line);font-size:17px;}
+  .mobile-menu a.active{color:var(--fucsia);font-weight:700;}
+  .nav-cta-mobile{
+    border:1px solid var(--ink);border-radius:30px;padding:12px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;margin:20px;text-align:center;display:block;
+  }
+
+  .btn-outline{
+    display:inline-block;border:1px solid currentColor;border-radius:30px;
+    padding:12px 26px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;
+    background:transparent;font-weight:700;
+  }
+  .btn-outline.dark{color:var(--ink);}
+  .btn-outline.dark:hover{background:var(--ink);color:#fff;}
+  .btn-outline.light:hover{background:#fff;color:var(--ink);}
+  .btn-solid{
+    display:inline-block;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:30px;
+    padding:12px 26px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-weight:700;
+  }
+  .btn-solid:hover{opacity:0.85;}
+
+  /* ===== GENERIC SECTION ===== */
+  section{padding:90px 0;position:relative;}
+  section.tight{padding:64px 0;}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb{font-size:12.5px;color:var(--ink-soft);margin-bottom:0;}
+  .breadcrumb a:hover{color:var(--fucsia);}
+  .breadcrumb .sep{margin:0 8px;opacity:0.5;}
+
+  /* ===== BANNER FULL-BLEED (foto + frase superpuesta) ===== */
+  .banner-overlay{
+    position:relative;width:100%;aspect-ratio:1920/720;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .banner-overlay img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  }
+  .banner-overlay::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(30,20,15,0.12) 0%, rgba(30,20,15,0.30) 60%, rgba(30,20,15,0.46) 100%);
+  }
+  .banner-text{position:relative;z-index:2;text-align:center;padding:0 40px;}
+  .banner-text .line-1{
+    font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;
+    color:var(--amarillo);font-size:50px;line-height:1.28;margin:0 0 18px;
+    text-shadow:0 3px 24px rgba(0,0,0,0.45);letter-spacing:0.001em;
+  }
+  .banner-text .line-2{
+    font-size:17px;letter-spacing:0.03em;color:#fff;font-weight:700;margin:0;
+    text-shadow:0 2px 14px rgba(0,0,0,0.4);
+  }
+  @media (max-width:760px){
+    .banner-overlay{aspect-ratio:auto;min-height:440px;padding:64px 0 !important;}
+    .banner-text{padding:0 24px;}
+    .banner-text .line-1{font-size:30px;}
+    .banner-text .line-2{font-size:13px;line-height:1.5;}
+  }
+
+  /* ===== NUESTRO COMPROMISO (foto + texto editorial) ===== */
+  .about-manifest{display:grid;grid-template-columns:0.9fr 1fr;gap:70px;align-items:center;}
+  @media (max-width:860px){.about-manifest{grid-template-columns:1fr;gap:36px;}}
+  .about-photo{border-radius:22px;overflow:hidden;aspect-ratio:4/5;}
+  .about-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
+  .about-text .section-label{text-align:left;margin-bottom:14px;}
+  .about-text h2{font-size:36px;line-height:1.22;margin:0 0 22px;max-width:460px;}
+  .about-text .about-body{font-size:16px;line-height:1.85;color:var(--ink-soft);font-weight:400;margin:0 0 26px;max-width:480px;}
+  .about-text .about-quote{font-size:21px;font-weight:700;color:var(--fucsia);margin:0;max-width:440px;line-height:1.4;}
+  @media (max-width:760px){.about-text h2{font-size:27px;}}
+
+  /* ===== NUESTROS PILARES ===== */
+  .pillars-section{background:var(--amarillo);}
+  .pillars-grid{display:grid;grid-template-columns:0.8fr 1fr;gap:70px;align-items:start;}
+  @media (max-width:860px){.pillars-grid{grid-template-columns:1fr;gap:36px;}}
+  .pillars-head .section-label{text-align:left;color:var(--ink);opacity:0.65;}
+  .pillars-head h2{font-size:34px;line-height:1.25;margin:0 0 18px;color:var(--ink);max-width:400px;}
+  .pillars-head p{font-size:15px;line-height:1.75;color:var(--ink-soft);font-weight:400;max-width:380px;margin:0;}
+  .pillar-item{display:flex;gap:20px;margin-bottom:38px;}
+  .pillar-item:last-child{margin-bottom:0;}
+  .pillar-icon{flex:0 0 46px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--amarillo);display:flex;align-items:center;justify-content:center;}
+  .pillar-icon svg{width:21px;height:21px;}
+  .pillar-item h3{font-size:19px;margin:0 0 8px;color:var(--ink);}
+  .pillar-item p{font-size:14.5px;line-height:1.7;color:var(--ink-soft);font-weight:400;margin:0;max-width:460px;}
+
+  /* ===== DÓNDE ENCONTRARNOS ===== */
+  .stores-section{background:var(--cream);text-align:center;}
+  .stores-section h2{color:var(--fucsia);font-size:32px;margin:0 0 50px;}
+  .stores-logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:60px;}
+  .store-logo{height:70px;display:flex;align-items:center;justify-content:center;}
+  .store-logo img{height:100%;width:auto;max-width:200px;object-fit:contain;}
+
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--line);padding:56px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-grid h5{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 16px;font-weight:700;}
+  .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+  .foot-logo{height:34px;width:auto;margin-bottom:12px;}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:760px){
+    nav.wrap{height:78px;}
+    .logo-mark{height:58px;}
+    .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .hamburger{display:flex;}
+
+    section{padding:56px 0;}
+    section.tight{padding:40px 0;}
+
+    .pillars-head h2{font-size:26px;}
+    .stores-section h2{font-size:24px;}
+
+
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+
+
+<!-- ===================== NAV ===================== -->
+<header class="site">
+  <nav class="wrap">
+    <a href="index.html"><img class="logo-mark" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+    <div class="navlinks">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html" class="active">Nosotros</a>
+      <a href="productos.html">Productos</a>
+      <a href="blog.html">Sobre tu periodo</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a class="nav-cta" href="productos.html">Descubre tu LadyFree</a>
+    <button class="hamburger" id="menuBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html" class="active">Nosotros</a>
+    <a href="productos.html">Productos</a>
+    <a href="blog.html">Sobre tu periodo</a>
+    <a href="contacto.html">Contacto</a>
+    <a class="nav-cta-mobile" href="productos.html">Descubre tu LadyFree</a>
+  </div>
+</header>
+
+<main id="nosotros">
+
+  <!-- BREADCRUMB -->
+  <section class="tight" style="padding-bottom:0;">
+    <div class="wrap">
+      <div class="breadcrumb" style="margin-bottom:0;">
+        <a href="index.html">Inicio</a><span class="sep">/</span><span>Nosotros</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER: FRASE DE MARCA -->
+  <section class="banner-overlay" style="padding:0;margin-top:34px;">
+    <img src="assets/nosotros-banner-libertad.jpg" alt="Mujer disfrutando libre en un campo de flores">
+    <div class="banner-text">
+      <p class="line-1">Vive cada momento con confianza y frescura.</p>
+      <p class="line-2">PORQUE QUEREMOS QUE SEAS CADA DÍA TU MEJOR VERSIÓN.</p>
+    </div>
+  </section>
+
+  <!-- NUESTRO COMPROMISO -->
+  <section>
+    <div class="wrap">
+      <div class="about-manifest">
+        <div class="about-photo">
+          <img src="assets/nosotros-libertad-mar.jpg" alt="Mujer sintiéndose libre frente al mar">
+        </div>
+        <div class="about-text">
+          <div class="section-label">Nuestro compromiso</div>
+          <h2>Cuidado femenino, sin complicaciones.</h2>
+          <p class="about-body">Creemos que el cuidado femenino no debería ser complicado ni incómodo: es parte de la vida, del día a día, de lo que somos. Por eso te acompañamos de forma simple, clara y confiable, con productos que funcionan y que te ayudan a seguir tu rutina sin preocuparte de más — y con la confianza de hablar de estos temas con naturalidad, sin vergüenza.</p>
+          <p class="about-quote">Para que seas cada día tu mejor versión.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUESTROS PILARES -->
+  <section class="pillars-section tight">
+    <div class="wrap">
+      <div class="pillars-grid">
+        <div class="pillars-head">
+          <div class="section-label">Por qué LadyFree</div>
+          <h2>Nuestros pilares</h2>
+          <p>Trabajamos para acompañar a las mujeres en su día a día, con soluciones simples, confiables y cercanas para el cuidado femenino.</p>
+        </div>
+        <div class="pillars-list">
+
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <div>
+              <h3>Confianza y protección</h3>
+              <p>Queremos que elegir LadyFree sea fácil y seguro. Entregamos productos que cumplen y comunicamos de forma clara y honesta, para que sepas qué esperar y puedas confiar en lo que usas.</p>
+            </div>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.5-9C1 8 2 4.5 5.5 4c2-.3 3.8.8 4.7 2.4C11.1 4.8 12.9 3.7 14.9 4c3.5.5 4.5 4 3 7-2.5 4.6-9.5 9-9.5 9z"></path></svg>
+            </div>
+            <div>
+              <h3>Cuidado</h3>
+              <p>Queremos hacer la vida más fácil, entregando soluciones cómodas y prácticas que realmente ayuden en el día a día. Nos enfocamos en el bienestar, desde lo concreto y sin complicaciones.</p>
+            </div>
+          </div>
+
+          <div class="pillar-item">
+            <div class="pillar-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"></path></svg>
+            </div>
+            <div>
+              <h3>Información útil</h3>
+              <p>Creemos que entender hace la diferencia. Entregamos información clara, cercana y aplicable, hablando de estos temas sin tabú para que te sientas más segura y acompañada.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DÓNDE ENCONTRARNOS -->
+  <section class="stores-section">
+    <div class="wrap">
+      <h2>¿Dónde encontrar tus LadyFree?</h2>
+      <div class="stores-logos">
+        <a class="store-logo" href="https://www.liquimax.cl/collections/lady-free" target="_blank" rel="noopener"><img src="assets/logo-liquimax-nuevo.png" alt="Liquimax"></a>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html"><img class="foot-logo" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+      </div>
+      <div><h5>Navegación</h5><ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="blog.html">Sobre tu periodo</a></li>
+      </ul></div>
+      <div><h5>Ayuda</h5><ul>
+        <li><a href="contacto.html">Dónde encontrarnos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul></div>
+      <div><h5>Síguenos</h5><ul>
+        <li><a href="https://www.instagram.com/ladyfree.cl/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LadyFree — Diseño web (Lungo)</span>
+      <span>Contenido e imágenes referenciales</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(menuBtn){
+    menuBtn.addEventListener('click', function(){
+      mobileMenu.classList.toggle('open');
+    });
+  }
+</script>
+
+</body>
+</html>

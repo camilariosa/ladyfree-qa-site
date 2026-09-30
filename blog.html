@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LadyFree — Sobre tu periodo</title>
+</head>
+<body>
+<style>
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadRoman.ttf') format('truetype');
+    font-weight:400;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'Myriad Pro';
+    src:url('assets/MyriadProBold.ttf') format('truetype');
+    font-weight:700;
+    font-style:normal;
+  }
+  :root{
+    --cream:#FBF3EE;
+    --cream-2:#F6E9E1;
+    --ink:#2B2320;
+    --ink-soft:#5A4F4A;
+    --fucsia:#D75F95;
+    --amarillo:#F6DB68;
+    --turquesa:#4BA2B0;
+    --verde:#ACC96F;
+    --azul:#4B4993;
+    --naranja:#E0833B;
+    --line:#E5D8CE;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:400;
+    color:var(--ink);
+    background:var(--cream);
+  }
+  h1,h2,h3,.serif{
+    font-family:'Myriad Pro',-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px;}
+  @media (max-width:760px){.wrap{padding:0 20px;}}
+
+  .section-label{
+    text-align:center;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--fucsia);font-weight:700;margin-bottom:6px;
+  }
+
+  /* ===== NAV ===== */
+  header.site{
+    position:sticky;top:0;z-index:150;
+    background:rgba(251,243,238,0.94);backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:118px;}
+  .logo-mark{height:104px;width:auto;display:block;cursor:pointer;}
+  .navlinks{display:flex;gap:30px;font-size:18px;letter-spacing:0.02em;}
+  .navlinks a{padding:6px 0;border-bottom:1px solid transparent;cursor:pointer;white-space:nowrap;}
+  .navlinks a.active,.navlinks a:hover{border-bottom:1px solid var(--fucsia);color:var(--fucsia);}
+  .nav-cta{
+    border:1px solid var(--ink);border-radius:30px;padding:9px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;
+  }
+  .nav-cta:hover{background:var(--ink);color:#fff;}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:6px;width:38px;height:38px;border:none;background:transparent;cursor:pointer;padding:0;flex:0 0 auto;}
+  .hamburger span{display:block;width:100%;height:2px;background:var(--ink);border-radius:2px;}
+  .mobile-menu{display:none;flex-direction:column;background:var(--cream);border-top:1px solid var(--line);}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:18px 20px;border-bottom:1px solid var(--line);font-size:17px;}
+  .mobile-menu a.active{color:var(--fucsia);font-weight:700;}
+  .nav-cta-mobile{
+    border:1px solid var(--ink);border-radius:30px;padding:12px 22px;font-size:13px;
+    cursor:pointer;white-space:nowrap;font-weight:700;margin:20px;text-align:center;display:block;
+  }
+
+  /* ===== GENERIC SECTION ===== */
+  section{padding:90px 0;position:relative;}
+  section.tight{padding:64px 0;}
+
+  /* ===== BREADCRUMB ===== */
+  .breadcrumb{font-size:12.5px;color:var(--ink-soft);margin-bottom:0;}
+  .breadcrumb .sep{margin:0 8px;opacity:0.5;}
+
+  /* ===== BLOG HEADER ===== */
+  .blog-head{text-align:center;max-width:640px;margin:0 auto 56px;}
+  .blog-head h2{color:var(--fucsia);font-size:34px;margin:0 0 14px;}
+  .blog-head p{font-size:15px;line-height:1.7;color:var(--ink-soft);font-weight:400;margin:0;}
+
+  /* ===== BLOG CARDS ===== */
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  @media (max-width:900px){.blog-grid{grid-template-columns:1fr;}}
+  .blog-card{
+    border-radius:26px;padding:26px 26px 24px;display:flex;flex-direction:column;
+    min-height:560px;
+  }
+  .blog-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;gap:12px;}
+  .blog-tag{
+    display:inline-block;border:1px solid rgba(43,35,32,0.4);border-radius:20px;
+    padding:6px 14px;font-size:10px;letter-spacing:0.07em;text-transform:uppercase;
+    font-weight:700;color:var(--ink);background:rgba(255,255,255,0.4);white-space:nowrap;
+  }
+  .blog-icon{
+    flex:0 0 34px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.45);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .blog-icon svg{width:16px;height:16px;}
+  .blog-title{font-size:21px;line-height:1.32;font-weight:700;color:var(--ink);margin:0 0 8px;}
+  .blog-meta{font-size:11px;color:var(--ink);opacity:0.6;font-weight:700;letter-spacing:0.03em;text-transform:uppercase;margin:0 0 18px;}
+  .blog-photo{flex:1;border-radius:16px;overflow:hidden;margin-bottom:20px;min-height:210px;}
+  .blog-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .blog-bottom{display:flex;align-items:center;justify-content:space-between;}
+  .blog-viewmore{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;color:var(--ink);}
+  .blog-arrow{
+    width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;
+    display:flex;align-items:center;justify-content:center;flex:0 0 44px;
+  }
+  .blog-arrow svg{width:17px;height:17px;}
+
+  /* ===== FOOTER ===== */
+  footer{border-top:1px solid var(--line);padding:56px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px;}
+  @media (max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  .foot-grid h5{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 16px;font-weight:700;}
+  .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px;font-size:13.5px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+  .foot-logo{height:34px;width:auto;margin-bottom:12px;}
+
+  /* ===== MOBILE ===== */
+  @media (max-width:760px){
+    nav.wrap{height:78px;}
+    .logo-mark{height:58px;}
+    .navlinks{display:none;}
+    .nav-cta{display:none;}
+    .hamburger{display:flex;}
+
+    section{padding:56px 0;}
+    section.tight{padding:40px 0;}
+
+    .blog-head h2{font-size:26px;}
+    .blog-card{min-height:auto;}
+
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+
+
+<!-- ===================== NAV ===================== -->
+<header class="site">
+  <nav class="wrap">
+    <a href="index.html"><img class="logo-mark" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+    <div class="navlinks">
+      <a href="index.html">Inicio</a>
+      <a href="nosotros.html">Nosotros</a>
+      <a href="productos.html">Productos</a>
+      <a href="blog.html" class="active">Sobre tu periodo</a>
+      <a href="contacto.html">Contacto</a>
+    </div>
+    <a class="nav-cta" href="productos.html">Descubre tu LadyFree</a>
+    <button class="hamburger" id="menuBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Inicio</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="productos.html">Productos</a>
+    <a href="blog.html" class="active">Sobre tu periodo</a>
+    <a href="contacto.html">Contacto</a>
+    <a class="nav-cta-mobile" href="productos.html">Descubre tu LadyFree</a>
+  </div>
+</header>
+
+<main id="blog">
+
+  <!-- BLOG: SOBRE TU PERIODO -->
+  <section class="tight">
+    <div class="wrap" style="max-width:1400px;">
+      <div class="breadcrumb" style="margin-bottom:34px;">
+        <a href="index.html">Inicio</a><span class="sep">/</span><span>Sobre tu periodo</span>
+      </div>
+
+      <div class="blog-head">
+        <div class="section-label">Blog LadyFree</div>
+        <h2>Sobre tu periodo</h2>
+        <p>Tips, mitos y respuestas claras para acompañarte en cada etapa de tu ciclo, de tú a tú y sin vueltas.</p>
+      </div>
+
+      <div class="blog-grid">
+
+        <!-- 1. DEPORTE -->
+        <a class="blog-card" style="background:var(--verde);" href="blog-post-deporte.html">
+          <div class="blog-top">
+            <span class="blog-tag">Tips</span>
+            <span class="blog-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.8 2.8M16.2 16.2 19 19M19 5l-2.8 2.8M7.8 16.2 5 19"></path></svg>
+            </span>
+          </div>
+          <div class="blog-title">¿Puedo hacer deporte con mi periodo? Consejos y más!</div>
+          <div class="blog-meta">Tips · 4 min de lectura</div>
+          <div class="blog-photo">
+            <img src="assets/blog-deporte-nueva.jpg" alt="Mujer haciendo ejercicio al aire libre">
+          </div>
+          <div class="blog-bottom">
+            <span class="blog-viewmore">Leer más</span>
+            <span class="blog-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 2. HINCHAZÓN -->
+        <a class="blog-card" style="background:var(--fucsia);" href="blog-post-hinchazon.html">
+          <div class="blog-top">
+            <span class="blog-tag">Ciclo menstrual</span>
+            <span class="blog-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 1 1-12 0c0-4.5 6-11 6-11z"></path></svg>
+            </span>
+          </div>
+          <div class="blog-title">Periodo e hinchazón: por qué pasa y qué hacer para mitigarla</div>
+          <div class="blog-meta">Ciclo menstrual · 4 min de lectura</div>
+          <div class="blog-photo">
+            <img src="assets/blog-hinchazon-nueva.jpg" alt="Mujer tomando té envuelta en una manta">
+          </div>
+          <div class="blog-bottom">
+            <span class="blog-viewmore">Leer más</span>
+            <span class="blog-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 3. APPS -->
+        <a class="blog-card" style="background:var(--amarillo);" href="blog-post-apps.html">
+          <div class="blog-top">
+            <span class="blog-tag">Tips</span>
+            <span class="blog-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"></rect><path d="M10.5 18.5h3"></path></svg>
+            </span>
+          </div>
+          <div class="blog-title">Encontramos las mejores apps para que siempre estés preparada para tu periodo</div>
+          <div class="blog-meta">Tips · 3 min de lectura</div>
+          <div class="blog-photo">
+            <img src="assets/blog-apps.jpg" alt="Mujer revisando una app de calendario menstrual en su celular">
+          </div>
+          <div class="blog-bottom">
+            <span class="blog-viewmore">Leer más</span>
+            <span class="blog-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="index.html"><img class="foot-logo" src="assets/logo-ladyfree.png" alt="LadyFree"></a>
+      </div>
+      <div><h5>Navegación</h5><ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="blog.html">Sobre tu periodo</a></li>
+      </ul></div>
+      <div><h5>Ayuda</h5><ul>
+        <li><a href="contacto.html">Dónde encontrarnos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul></div>
+      <div><h5>Síguenos</h5><ul>
+        <li><a href="https://www.instagram.com/ladyfree.cl/" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#">TikTok</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 LadyFree — Diseño web (Lungo)</span>
+      <span>Contenido e imágenes referenciales</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(menuBtn){
+    menuBtn.addEventListener('click', function(){
+      mobileMenu.classList.toggle('open');
+    });
+  }
+</script>
+
+</body>
+</html>
